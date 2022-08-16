@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <title>WSG</title>
+    <link href="/wsg.css" rel="stylesheet">
+    <script src="/pool-water.bundled.js"></script>
+  </head>
+  <body>
+    <canvas width="600" height="600" id="wsg-tell-no-one">your browser does not support esotericism</canvas>
+    <script>
+      var el = document.getElementById("wsg-tell-no-one");
+      var app = new svv.WorldShadowGovernmentApp({el: el});
+
+      (function loop() {
+        requestAnimationFrame(loop);
+        app.update(+new Date());
+        app.draw();
+      }());
+
+      function fill() {
+        let w = document.documentElement.clientWidth;
+        let h = document.documentElement.clientHeight;
+        app.setSize(w, h);
+      }
+
+      fill();
+
+      window.addEventListener("resize", fill);
+
+      fill();
+    </script>
+  </body>
+</html>
