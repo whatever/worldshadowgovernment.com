@@ -2,11 +2,89 @@
 <html lang="jp">
   <head>
     <title>&nbsp;</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/wsg.css" rel="stylesheet">
     <script src="/pool-water.bundled.js"></script>
   </head>
   <body>
     <canvas width="600" height="600" id="wsg-tell-no-one">your browser does not support esotericism</canvas>
+    <div id="login-box" class="hidden">
+      <img src="/login_WSG-01.svg" height="14pt" id="message"><br>
+      <input type="password" size="12" id="secret">
+    </div>
     <script src="/wsg.js"></script>
+    <script>
+
+      console.log("(  (               (   (                                        \n\
+ )\\))(   '     (    )\\  )\\ )                                     \n\
+((_)()\\ )  (   )(  ((_)(()/( (                                   \n\
+_(())\\_)() )\\ (()\\  _   ((_)))\\ )    )         (                 \n\
+\\ \\((_)/ /((_) ((_)| |  _| |(()/( ( /(     )   )\\ )      (  (    \n\
+ \\ \\/\\/ // _ \\| '_|| |/ _` | /(_)))\\()) ( /(  (()/(  (   )\\))(   \n\
+  \\_/\\_/ \\___/|_|  |_|\\__,_|(_)) ((_)\\  )(_))  ((_)) )\\ ((_)()\\  \n\
+                            / __|| |(_)((_)_   _| | ((_)_(()((_) \n\
+                            \\__ \\| ' \\ / _` |/ _` |/ _ \\\\ V  V / \n\
+ (                          |___/|_||_|\\__,_|\\__,_|\\___/ \\_/\\)/  \n\
+ )\\ )          )      (   (              )      (         ( /(   \n\
+(()/(     (   /((    ))\\  )(    (       (      ))\\  (     )\\())  \n\
+ /(_))_   )\\ (_))\\  /((_)(()\\   )\\ )    )\\  ' /((_) )\\ ) (_))/   \n\
+(_)) __| ((_)_)((_)(_))   ((_) _(_/(  _((_)) (_))  _(_/( | |_    \n\
+  | (_ |/ _ \\\\ V / / -_) | '_|| ' \\))| '  \\()/ -_)| ' \\))|  _|   \n\
+   \\___|\\___/ \\_/  \\___| |_|  |_||_| |_|_|_| \\___||_||_|  \\__|   \n\
+                                                                 ");
+
+      var neutral = document.createElement("IMG");
+      neutral.src = "/login_WSG-01.svg";
+
+      var success = document.createElement("IMG");
+      success.src = "/login_WSG-02.svg";
+
+      var failed = document.createElement("IMG");
+      failed.src = "/login_WSG-03.svg";
+
+      var svg = document.getElementById("message");
+      var el = document.getElementById("secret");
+      var login = document.getElementById("login-box");
+
+      function restore() {
+        svg.src = neutral.src;
+        el.disabled = "";
+        el.value = "";
+        el.blur();
+        login.className = "hidden";
+      }
+
+      el.addEventListener("change", function() {
+
+        if (el.value == "assword1") {
+          svg.src = success.src;
+          login.className = "showing success";
+        } else {
+          svg.src = failed.src;
+          login.className = "showing failure";
+        }
+
+        el.disabled = "disabled";
+        setTimeout(restore, 2000);
+
+      });
+
+      document.body.addEventListener("click", function (ev) {
+
+        if (login.className != "hidden") {
+          restore();
+          return;
+        }
+
+        var x = ev.clientX;
+        var y = ev.clientY;
+
+        login.style.position = "fixed";
+        login.style.left = x + "px";
+        login.style.top = y + "px";
+        login.className = "showing";
+        el.focus();
+      });
+    </script>
   </body>
 </html>
