@@ -15,78 +15,25 @@
     <script src="/wsg.js"></script>
     <script>
 
-      var neutral = document.createElement("IMG");
-      neutral.src = "/login_WSG-01.svg";
+      var timeout = undefined;
 
-      var success = document.createElement("IMG");
-      success.src = "/login_WSG-02.svg";
+      document.getElementById("secret").addEventListener("change", function(ev) {
 
-      var failed = document.createElement("IMG");
-      failed.src = "/login_WSG-03.svg";
+        var password = ev.srcElement.value;
 
-      var svg = document.getElementById("message");
-      var el = document.getElementById("secret");
-      var login = document.getElementById("login-box");
-
-      function restore() {
-        svg.src = neutral.src;
-        el.disabled = "";
-        el.value = "";
-        el.blur();
-        login.className = "hidden";
-      }
-
-      el.addEventListener("change", function() {
-
-        if (el.value == "assword1") {
-          svg.src = success.src;
+        if (password == "assword1") {
+          svg.src = svgs.success.src;
           login.className = "showing success";
         } else {
-          svg.src = failed.src;
+          svg.src = svgs.failure.src;
           login.className = "showing failure";
         }
 
-        el.disabled = "disabled";
-        setTimeout(restore, 2000);
-
+        input.disabled = "disabled";
+        timeout = setTimeout(restore, 2000);
       });
 
-      document.body.addEventListener("click", function (ev) {
-
-        if (login.className != "hidden") {
-          restore();
-          return;
-        }
-
-        login.className = "showing";
-
-        var x = ev.clientX;
-        var y = ev.clientY;
-
-        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-        const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-
-        var box = login.getBoundingClientRect();
-
-        var bottom = y + box.height;
-        var right = x + box.width;
-
-        if (right > vw) {
-          x = ev.clientX - (right - vw);
-          x = Math.max(0, x);
-        }
-
-        if (bottom > vh) {
-          y = ev.clientY - (bottom - vh);
-          y = Math.max(0, y);
-        }
-
-        login.style.position = "fixed";
-        login.style.left = x + "px";
-        login.style.top = y + "px";
-
-        el.focus();
-      });
+      function b(c,d){var e=a();return b=function(f,g){f=f-0x136;var h=e[f];return h;},b(c,d);}function a(){var a6=['message','tlEvv','max','blur','left','innerWidth','getBoundingClientRect','secret','getElementById','clientX','35SilkbA','812892EqsOvt','className','/login_WSG-03.svg','style','2919768kCGmXo','login-box','hidden','showing','fixed','1548avcoCy','failure','top','click','position','disabled','src','22kLRmGP','16191mDCUXM','documentElement','width','body','IMG','value','4901700ivgsuQ','/login_WSG-01.svg','innerHeight','DYhrY','827WeVLBw','clientWidth','56397clYBkT','/login_WSG-02.svg','focus','4833927mPLAYa','createElement','1840ctQsYZ','20GdcJrt','height','neutral'];a=function(){return a6;};return a();}var a3=b;(function(c,d){var a2=b,e=c();while(!![]){try{var f=-parseInt(a2(0x136))/0x1*(-parseInt(a2(0x155))/0x2)+-parseInt(a2(0x138))/0x3*(parseInt(a2(0x13e))/0x4)+parseInt(a2(0x14b))/0x5*(parseInt(a2(0x14c))/0x6)+parseInt(a2(0x15d))/0x7*(parseInt(a2(0x13d))/0x8)+-parseInt(a2(0x13b))/0x9+-parseInt(a2(0x163))/0xa+parseInt(a2(0x15c))/0xb*(-parseInt(a2(0x150))/0xc);if(f===d)break;else e['push'](e['shift']());}catch(g){e['push'](e['shift']());}}}(a,0x7d236));var svgs={'neutral':document[a3(0x13c)](a3(0x161)),'success':document[a3(0x13c)](a3(0x161)),'failure':document[a3(0x13c)](a3(0x161))};svgs[a3(0x140)]['src']=a3(0x164),svgs['success']['src']=a3(0x139),svgs[a3(0x156)][a3(0x15b)]=a3(0x14e);var svg=document['getElementById'](a3(0x141)),input=document[a3(0x149)](a3(0x148)),login=document[a3(0x149)](a3(0x151));document[a3(0x160)]['addEventListener'](a3(0x158),function(c){var a4=a3;if(login['className']!='hidden'){restore();return;}login[a4(0x14d)]=a4(0x153);var d=c[a4(0x14a)],e=c['clientY'];const f=Math['max'](document[a4(0x15e)][a4(0x137)]||0x0,window[a4(0x146)]||0x0),g=Math['max'](document[a4(0x15e)]['clientHeight']||0x0,window[a4(0x165)]||0x0);var h=login[a4(0x147)](),i=e+h[a4(0x13f)],j=d+h[a4(0x15f)];j>f&&(d=c['clientX']-(j-f),d=Math[a4(0x143)](0x0,d)),i>g&&(a4(0x166)!==a4(0x142)?(e=c['clientY']-(i-g),e=Math['max'](0x0,e)):(k(l),m[a4(0x15b)]=n[a4(0x140)][a4(0x15b)],o[a4(0x15a)]='',p['value']='',q[a4(0x144)](),r[a4(0x14d)]=a4(0x152))),login[a4(0x14f)][a4(0x159)]=a4(0x154),login[a4(0x14f)][a4(0x145)]=d+'px',login['style'][a4(0x157)]=e+'px',input[a4(0x13a)]();});function restore(){var a5=a3;clearTimeout(timeout),svg[a5(0x15b)]=svgs[a5(0x140)][a5(0x15b)],input[a5(0x15a)]='',input[a5(0x162)]='',input[a5(0x144)](),login[a5(0x14d)]=a5(0x152);}
     </script>
   </body>
 </html>
