@@ -15,24 +15,6 @@
     <script src="/wsg.js"></script>
     <script>
 
-      console.log("(  (               (   (                                        \n\
- )\\))(   '     (    )\\  )\\ )                                     \n\
-((_)()\\ )  (   )(  ((_)(()/( (                                   \n\
-_(())\\_)() )\\ (()\\  _   ((_)))\\ )    )         (                 \n\
-\\ \\((_)/ /((_) ((_)| |  _| |(()/( ( /(     )   )\\ )      (  (    \n\
- \\ \\/\\/ // _ \\| '_|| |/ _` | /(_)))\\()) ( /(  (()/(  (   )\\))(   \n\
-  \\_/\\_/ \\___/|_|  |_|\\__,_|(_)) ((_)\\  )(_))  ((_)) )\\ ((_)()\\  \n\
-                            / __|| |(_)((_)_   _| | ((_)_(()((_) \n\
-                            \\__ \\| ' \\ / _` |/ _` |/ _ \\\\ V  V / \n\
- (                          |___/|_||_|\\__,_|\\__,_|\\___/ \\_/\\)/  \n\
- )\\ )          )      (   (              )      (         ( /(   \n\
-(()/(     (   /((    ))\\  )(    (       (      ))\\  (     )\\())  \n\
- /(_))_   )\\ (_))\\  /((_)(()\\   )\\ )    )\\  ' /((_) )\\ ) (_))/   \n\
-(_)) __| ((_)_)((_)(_))   ((_) _(_/(  _((_)) (_))  _(_/( | |_    \n\
-  | (_ |/ _ \\\\ V / / -_) | '_|| ' \\))| '  \\()/ -_)| ' \\))|  _|   \n\
-   \\___|\\___/ \\_/  \\___| |_|  |_||_| |_|_|_| \\___||_||_|  \\__|   \n\
-                                                                 ");
-
       var neutral = document.createElement("IMG");
       neutral.src = "/login_WSG-01.svg";
 
@@ -76,13 +58,33 @@ _(())\\_)() )\\ (()\\  _   ((_)))\\ )    )         (                 \n\
           return;
         }
 
+        login.className = "showing";
+
         var x = ev.clientX;
         var y = ev.clientY;
+
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+        const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
+        var box = login.getBoundingClientRect();
+
+        var bottom = y + box.height;
+        var right = x + box.width;
+
+        if (right > vw) {
+          x = ev.clientX - (right - vw);
+          x = Math.max(0, x);
+        }
+
+        if (bottom > vh) {
+          y = ev.clientY - (bottom - vh);
+          y = Math.max(0, y);
+        }
 
         login.style.position = "fixed";
         login.style.left = x + "px";
         login.style.top = y + "px";
-        login.className = "showing";
+
         el.focus();
       });
     </script>

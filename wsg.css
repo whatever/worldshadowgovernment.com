@@ -30,7 +30,8 @@ body {
 
 #login-box {
   position: fixed;
-  
+  display: block;
+  max-width: 100%;
 }
 
 #login-box.success input {
